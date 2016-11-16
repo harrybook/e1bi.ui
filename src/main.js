@@ -1,9 +1,13 @@
 import Vue from 'vue'
-import App from './App'
+import VueRouter from 'vue-router'
+import Home from './pages/Home'
+import MyDashboard from './pages/MyDashboard.vue'
+
+Vue.use(VueRouter)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  template: '<App/>',
-  components: { App }
+  template: '<Home/>',
+  components: { Home, MyDashboard }
 })

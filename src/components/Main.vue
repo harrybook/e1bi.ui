@@ -95,7 +95,7 @@ body {
 
 .main {
     width: 100%;
-    min-height: 600px;
+    min-height: 350px;
     overflow: hidden;
     background-color: #F2F2F2;
     background-size: 83px 100%;
