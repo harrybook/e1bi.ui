@@ -10,15 +10,16 @@
 <script>
 /* eslint-disable */
 import UserMgr from '../sso'
+import router from '../router'
 
 export default {
   created () {
+    let vue = this;
     UserMgr.signinRedirectCallback().then(function (user) {
-      localStorage.setItem('sso', '')
       var userString = JSON.stringify(user)
-      console.log(userString)
+      localStorage.setItem('sso', userString)
+      router.push(localStorage.lastUrlPath)
     })
-    console.log('calling back')
   }
 }
 

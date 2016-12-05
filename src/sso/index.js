@@ -13,7 +13,7 @@ const userManagerConfig = {
   client_id: process.env.SSO_ClientId,
   redirect_uri: `${protocal}//${hostname}${port}/callback`,
   response_type: 'token id_token',
-  scope: 'openid email tableauviz.api',
+  scope: 'openid email e1SystemAPI',
   authority: process.env.SSO_AuthorityUrl,
   silent_redirect_uri: `${protocal}//${hostname}${port}/callback`,
   automaticSilentRenew: false,

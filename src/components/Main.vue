@@ -450,5 +450,22 @@
         background: #456981;
     }
 </style>
+
 <script>
+    /* eslint-disable no-new */
+    import UserMgr from '../sso'
+
+    function checkAuth () {
+        localStorage.lastPathUrl = location.pathname + location.search
+        var ssoString = localStorage["sso"]
+        if (ssoString === undefined || JSON.parse(ssoString) === undefined) {
+            UserMgr.signinRedirect()
+        }
+    }
+
+    export default{
+        created () {
+            checkAuth ()
+        }
+    }
 </script>
