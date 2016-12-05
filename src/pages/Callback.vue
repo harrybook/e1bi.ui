@@ -18,7 +18,10 @@ export default {
     UserMgr.signinRedirectCallback().then(function (user) {
       var userString = JSON.stringify(user)
       localStorage.setItem('sso', userString)
-      router.push(localStorage.lastUrlPath)
+      console.log(vue)
+      console.log(this)
+      console.log(router)
+      router.push(localStorage.lastPathUrl)
     })
   }
 }
