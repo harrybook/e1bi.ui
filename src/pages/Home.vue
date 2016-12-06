@@ -15,8 +15,10 @@
     export default{
       data () {
         return {
-          msg: 'This is homepage, developed by harry.ning'
+          msg: this.$store.state.email
         }
+      },
+      mounted: function(){
       },
       components: {
         MainLayout

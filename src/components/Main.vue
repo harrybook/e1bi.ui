@@ -455,17 +455,16 @@
     /* eslint-disable no-new */
     import UserMgr from '../sso'
 
-    function checkAuth () {
+    function checkAuth (store) {
         localStorage.lastPathUrl = location.pathname + location.search
-        var ssoString = localStorage["sso"]
-        if (ssoString === undefined || JSON.parse(ssoString) === undefined) {
+        if (store.state.accessToken === '') {
             UserMgr.signinRedirect()
         }
     }
 
     export default{
         created () {
-            checkAuth ()
+            checkAuth (this.$store)
         }
     }
 </script>

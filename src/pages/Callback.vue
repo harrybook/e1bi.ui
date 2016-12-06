@@ -1,27 +1,26 @@
 <template>
-  <div>
+  <div class="callback">
     Redirecting ...
   </div>
 </template>
 
 <style>
+.callback{
+  background: white
+}
 </style>
 
 <script>
 /* eslint-disable */
 import UserMgr from '../sso'
-import router from '../router'
 
 export default {
   created () {
     let vue = this;
     UserMgr.signinRedirectCallback().then(function (user) {
-      var userString = JSON.stringify(user)
-      localStorage.setItem('sso', userString)
-      console.log(vue)
-      console.log(this)
-      console.log(router)
-      router.push(localStorage.lastPathUrl)
+      vue.$store.commit('login', user)
+      vue.$http.headers.common["Authorization"] =  'Bearer ' + user.access_token
+      vue.$router.push(localStorage.lastPathUrl)
     })
   }
 }
