@@ -6,7 +6,8 @@ import store from './vuex/store'
 import App from './App.vue'
 
 Vue.use(VueResource)
-Vue.http.options.root = '/api'
+Vue.http.options.root = process.env.ApiBase
+console.log(process.env.ApiBase)
 sync(store, router)
 
 export default new Vue({
