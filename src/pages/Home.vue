@@ -15,8 +15,7 @@
 
     export default{
       data () {
-        console.log(Vue.http.options.root)
-      Vue.http.get(Vue.http.options.root + '/api/auth').then((response)=> {
+      this.$http.get(Vue.http.options.root + '/api/auth').then((response)=> {
       console.log('success')
       console.log(response)
       }, (response)=>{

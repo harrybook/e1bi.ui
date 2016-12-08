@@ -12,15 +12,16 @@
 
 <script>
 /* eslint-disable */
+import Vue from 'vue'
 import UserMgr from '../sso'
 
 export default {
   created () {
-    let vue = this;
+    let _self = this;
     UserMgr.signinRedirectCallback().then(function (user) {
-      vue.$store.commit('login', user)
-      vue.$http.headers.common["Authorization"] =  'Bearer ' + user.access_token
-      vue.$router.push(localStorage.lastPathUrl)
+      Vue.http.headers.common["Authorization"] =  'Bearer ' + user.access_token
+      _self.$store.commit('login', user)
+      _self.$router.push(localStorage.lastPathUrl)
     })
   }
 }
