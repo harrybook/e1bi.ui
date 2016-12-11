@@ -12,75 +12,134 @@
               <div class="tabItem" :class="{active:item.IsActive}">{{item.Name}}</div>
           </a>
         </template>
-        
-        <report-tab v-for="(item,index) in AuthData" :tabData="item"></report-tab>
+       </div>
+       <div class="Content">
+        <template v-for="(tabData,index) in AuthData">
+          <div :class="{hidden:!tabData.IsActive}">
+            <report-category v-for="(category,index) in tabData.Categories" :category="category">
+            </report-category>
+          </div>
+        </template>
+       </div>
 
-      </div>
     </main-layout>
   </div>
 </template>
-<style>
+<style scoped>
+  .hidden{
+    display:none
+  }
 
+  .tabMenu {
+        width: 100%;
+        float: left;
+        padding-left: 28px;
+        margin-bottom: 25px;
+        text-align: left;
+        font-size: 14px;
+        font-family: 'HelveticaNeueBold';
+        color: #4a4a4a;
+        box-shadow: 0px 0.5px 3px;
+    }
+    
+    .tabMenu a {
+        background-color: rgba(0, 0, 0, 0);
+        box-sizing: border-box;
+        color: #4a4a4a;
+        cursor: auto;
+        display: inline;
+        font-family: 'HelveticaNeueBold';
+        font-size: 15px;
+        height: auto;
+        line-height: 22.5px;
+        text-decoration: underline;
+        width: auto;
+    }
+    
+    .tabMenu a:hover div {
+        border-bottom-color: #0086E5;
+    }
+    
+    .tabItem {
+        border-bottom-color: rgb(204, 204, 204);
+        border-bottom-style: solid;
+        border-bottom-width: 6px;
+        box-sizing: border-box;
+        color: #4a4a4a;
+        cursor: auto;
+        display: block;
+        float: left;
+        font-family: 'HelveticaNeueBold';
+        font-size: 15px;
+        height: 44px;
+        line-height: 22.5px;
+        padding-bottom: 8px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 8px;
+        width: auto;
+    }
+    
+    .tabItem.active {
+        border-bottom-color: #0086E5;
+    }
 </style>
 <script>
-    import Vue from 'vue'
-    import store from '../vuex/store'
-    import * as api from '../api'
-    import MainLayout from '../components/MainLayout.vue'
-    import ReportTab from '../components/ReportTab.vue'
+import store from '../vuex/store'
+import * as api from '../api'
+import MainLayout from '../components/MainLayout.vue'
+import ReportCategory from '../components/ReportCategory.vue'
 
-    export default {
-        data() {
-          return   {
-            AuthData: [
-              {
-                Name: 'STANDARD REPORTS',
-                IsActive: true,
-                Categories: []
-              },
-              {
-                Name: 'STANDARD DASHBOARDS',
-                IsActive: false,
-                Categories: []
-              },
-              {
-                Name: 'CUSTOMIZATION',
-                IsActive: false,
-                Categories: []
-              }
-            ]
+export default {
+    data() {
+      return   {
+        AuthData: [
+          {
+            Name: 'STANDARD REPORTS',
+            IsActive: true,
+            Categories: []
+          },
+          {
+            Name: 'STANDARD DASHBOARDS',
+            IsActive: false,
+            Categories: []
+          },
+          {
+            Name: 'CUSTOMIZATION',
+            IsActive: false,
+            Categories: []
           }
-        },
-        mounted: function () {
-        },
-        created: function(){
-          if (this.$store.state.accessToken !== '') {
-              api.getAuth().then((response) => {
-                let index = 0
-                for(let item in response.body){
-                  this.AuthData[index].Categories = response.body[item]
-                  index++
-                }
-                window.authData = response.body
-                console.log(this.AuthData)
-              }, (response) => {
-                console.log(response)
-              })
+        ]
+      }
+    },
+    mounted: function () {
+    },
+    created: function(){
+      if (this.$store.state.accessToken !== '') {
+          api.getAuth().then((response) => {
+            let index = 0
+            for(let item in response.body){
+              this.AuthData[index].Categories = response.body[item]
+              index++
             }
-          
-        },
-        components: {
-            MainLayout,
-            ReportTab
-        },
-        methods: {
-          tabToggle: function(index){
-            this.AuthData.map(function(item,i){
-              index === i ? item.IsActive = true: item.IsActive = false
-            })
-          }
+            window.authData = response.body
+          }, (response) => {
+            console.log(response)
+          })
         }
+      
+    },
+    components: {
+        MainLayout,
+        ReportCategory
+    },
+    methods: {
+      tabToggle: function(index){
+        this.AuthData.map(function(item,i){
+          index === i ? item.IsActive = true: item.IsActive = false
+        })
+      }
     }
-
+}
 
 </script>

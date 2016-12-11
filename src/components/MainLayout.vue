@@ -122,76 +122,7 @@
         border-bottom: 1px solid #000;
     }
     
-    .tabMenu {
-        width: 100%;
-        float: left;
-        padding-left: 28px;
-        margin-bottom: 25px;
-        text-align: left;
-        font-size: 14px;
-        font-family: 'HelveticaNeueBold';
-        color: #4a4a4a;
-        box-shadow: 0px 0.5px 3px;
-    }
-    
-    .tabMenu a {
-        background-color: rgba(0, 0, 0, 0);
-        box-sizing: border-box;
-        color: #4a4a4a;
-        cursor: auto;
-        display: inline;
-        font-family: 'HelveticaNeueBold';
-        font-size: 15px;
-        height: auto;
-        line-height: 22.5px;
-        text-decoration: underline;
-        width: auto;
-    }
-    
-    .tabMenu a:hover div {
-        border-bottom-color: #0086E5;
-    }
-    
-    .tabItem {
-        border-bottom-color: rgb(204, 204, 204);
-        border-bottom-style: solid;
-        border-bottom-width: 6px;
-        box-sizing: border-box;
-        color: #4a4a4a;
-        cursor: auto;
-        display: block;
-        float: left;
-        font-family: 'HelveticaNeueBold';
-        font-size: 15px;
-        height: 44px;
-        line-height: 22.5px;
-        padding-bottom: 8px;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 8px;
-        width: auto;
-    }
-    
-    .tabItemActive {
-        border-bottom-color: #0086E5;
-        border-bottom-style: solid;
-        border-bottom-width: 6px;
-        box-sizing: border-box;
-        color: #4a4a4a;
-        cursor: auto;
-        display: block;
-        float: left;
-        font-family: 'HelveticaNeueBold';
-        font-size: 15px;
-        height: 44px;
-        line-height: 22.5px;
-        padding-bottom: 8px;
-        padding-left: 15px;
-        padding-right: 15px;
-        padding-top: 8px;
-        width: auto;
-    }
-    
+       
     #SMARTREPORTS {
         display: none;
     }
@@ -452,19 +383,18 @@
 </style>
 
 <script>
-    /* eslint-disable no-new */
-    import UserMgr from '../sso'
+import UserMgr from '../sso'
 
-    function checkAuth (store) {
-        localStorage.lastPathUrl = location.pathname + location.search
-        if (store.state.accessToken === '') {
-            UserMgr.signinRedirect()
-        }
+function checkAuth (store) {
+    localStorage.lastPathUrl = location.pathname + location.search
+    if (store.state.accessToken === '') {
+        UserMgr.signinRedirect()
     }
+}
 
-    export default{
-        created () {
-            checkAuth (this.$store)
-        }
+export default{
+    created () {
+        checkAuth (this.$store)
     }
+}
 </script>
