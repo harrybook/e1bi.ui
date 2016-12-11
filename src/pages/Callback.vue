@@ -13,12 +13,12 @@
 <script>
 /* eslint-disable */
 import Vue from 'vue'
-import UserMgr from '../sso'
+import userMgr from '../sso'
 
 export default {
   created () {
     let _self = this;
-    UserMgr.signinRedirectCallback().then(function (user) {
+    userMgr.signinRedirectCallback().then(function (user) {
       Vue.http.headers.common["Authorization"] =  'Bearer ' + user.access_token
       _self.$store.commit('login', user)
       _self.$router.push(localStorage.lastPathUrl)
