@@ -11,6 +11,14 @@
 import report from './Report.vue'
 export default {
     props: ["category"],
-    components: {report}
+    components: {report},
+    created: function(){
+      for(let index in this.category.Reports){
+        let reportData = this.category.Reports[index]
+        let urlPre = reportData.IsReport === true ? 'report?path=' : 'tableau?path='
+        reportData.Url = urlPre + reportData.ViewUrl 
+      }
+      console.log(this.category)
+    }
 }
 </script>
