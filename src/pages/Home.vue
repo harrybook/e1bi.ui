@@ -93,37 +93,17 @@ import ReportCategory from '../components/ReportCategory.vue'
 export default {
     data() {
       return   {
-        AuthData: [
-          {
-            Name: 'STANDARD REPORTS',
-            IsActive: true,
-            Categories: []
-          },
-          {
-            Name: 'STANDARD DASHBOARDS',
-            IsActive: false,
-            Categories: []
-          },
-          {
-            Name: 'CUSTOMIZATION',
-            IsActive: false,
-            Categories: []
-          }
-        ]
+        AuthData: this.$store.state.authData
       }
     },
     mounted: function () {
     },
     created: function(){
-      if (this.$store.state.accessToken !== '') {
+      if (this.$store.state.accessToken !== '' & this.$store.state.isLoaded === false) {
           api.getAuth().then((response) => {
-            let index = 0
-            for(let item in response.body){
-              this.AuthData[index].Categories = response.body[item]
-              index++
-            }
-            window.authData = response.body
+            this.$store.commit('load', response.body)
           }, (response) => {
+            console.log('failed')
             console.log(response)
           })
         }
@@ -135,9 +115,7 @@ export default {
     },
     methods: {
       tabToggle: function(index){
-        this.AuthData.map(function(item,i){
-          index === i ? item.IsActive = true: item.IsActive = false
-        })
+        this.$store.commit('swithTab', index)
       }
     }
 }

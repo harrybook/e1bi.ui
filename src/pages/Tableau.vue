@@ -1,13 +1,20 @@
 <template>
   <div>
     <main-layout>
+        <div class="tabContainer">
+            <div id="vizContainer" ref="vizContainer"></div>
+        </div>
     </main-layout>
   </div>
 </template>
-<style>
+<style scoped>
+.tabContainer{
+    margin-left:auto;
+    margin-right:auto
+}
 </style>
 <script>
-import store from '../vuex/store'
+import tableau from 'tableau-api'
 import * as api from '../api'
 import MainLayout from '../components/MainLayout.vue'
 
@@ -15,6 +22,28 @@ export default {
     data() {
       return {
       }
+    },
+    created: function(){
+  
+    },
+    mounted: function(){
+        if (this.$store.state.accessToken !== '') {
+            let path = this.$store.state.route.query.path
+            api.getViz(path).then((response) => {
+                console.log(response)
+                let trustedUrl = response.body.TrustedUrl
+                var options = {
+                    usePublishedSize: true,
+                    toolbarPosition: 'top',
+                    hideToolbar: false
+                }
+                let viz = new tableau.Viz(this.$refs.vizContainer, trustedUrl, options)
+                
+            }, (response) => {
+                console.log('failed')
+                console.log(response)
+            })
+       } 
     },
     components:{
         MainLayout

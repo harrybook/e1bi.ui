@@ -2,9 +2,9 @@
     <div class="wap">
         <div class="head">
             <div class="logo">
-                <a href="/">
+                <router-link to="/">
                     <img src="../assets/img/logo_header.svg" style="margin-top:10px;" />
-                </a>
+                </router-link>
             </div>
             <div class="UserImg">
                 <a href="#"><img src="../assets/img/profile.svg" style="margin-right:15px; margin-bottom:10px;"></a>

@@ -18,7 +18,6 @@ export default {
         let urlPre = reportData.IsReport === true ? 'report?path=' : 'tableau?path='
         reportData.Url = urlPre + reportData.ViewUrl 
       }
-      console.log(this.category)
     }
 }
 </script>

@@ -2,13 +2,20 @@
     <div class="detailContent">
         <div class="detailContentWap">
             <div class="detailContentBlock">
-                <a :href="report.Url" target="_blank">
+                <router-link :to="report.Url">
                     <div class="detailContentWap">
                         <div class="detailContentTitle">
                             {{report.WorkbookName}}
                         </div>
                     </div>
-                </a>
+                </router-link>
+                <!--<a :href="report.Url" target="_blank">
+                    <div class="detailContentWap">
+                        <div class="detailContentTitle">
+                            {{report.WorkbookName}}
+                        </div>
+                    </div>
+                </a>-->
             </div>
 
         </div>
