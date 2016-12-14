@@ -2,7 +2,7 @@
   <div class="detail">
     <div class="detailHead">
         <img src="../assets/img/marketing standard.svg" class="iconMark" />
-        {{category.Category.ProjectName}}
+        {{category.Category.CategoryName}}
     </div>
     <report v-for="(report, index) in category.Reports" :report="report"></report>
   </div>
@@ -16,7 +16,7 @@ export default {
       for(let index in this.category.Reports){
         let reportData = this.category.Reports[index]
         let urlPre = reportData.IsReport === true ? 'report?path=' : 'tableau?path='
-        reportData.Url = urlPre + reportData.ViewUrl 
+        reportData.Url = urlPre + reportData.ReportPath 
       }
     }
 }

@@ -7,16 +7,12 @@ export default new Vuex.Store({
     state: {
         email: '',
         accessToken: '',
+        idToken: '',
         isLoaded: false,
         authData: [
             {
-                Name: 'STANDARD REPORTS',
+                Name: 'STANDARD REPORT',
                 IsActive: true,
-                Categories: []
-            },
-            {
-                Name: 'STANDARD DASHBOARDS',
-                IsActive: false,
                 Categories: []
             },
             {
@@ -29,6 +25,7 @@ export default new Vuex.Store({
         login(state, sso) {
             state.email = sso.profile.email
             state.accessToken = sso.access_token
+            state.idToken = sso.id_token
         },
         load(state, data){
             state.isLoaded = true

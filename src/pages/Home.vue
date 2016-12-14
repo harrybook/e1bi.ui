@@ -16,6 +16,22 @@
        <div class="Content">
         <template v-for="(tabData,index) in AuthData">
           <div :class="{hidden:!tabData.IsActive}">
+
+            <div class="menu">
+              <template v-for="(category,index) in tabData.Categories">
+                <div :key="category.ProjectId" :class="'tag Color'+ (index%8+1)" :style="'opacity:1'">
+                    <img src="../assets/img/marketing standard -W.svg" class="iconMark iconPadding"/>
+                    <div class="tagContent">
+                        {{category.Category.CategoryName}}
+                    </div>
+                    <a href="javascript:void(0)">
+                        <div class="tagSign">
+                        </div>
+                    </a>
+                </div>
+              </template>
+            </div>
+
             <report-category v-for="(category,index) in tabData.Categories" :category="category">
             </report-category>
           </div>
@@ -23,6 +39,7 @@
        </div>
 
     </main-layout>
+    <iframe ref="SSRS_SSO" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" scrolling="no"  style="width:0px; height:0px" src=""></iframe>
   </div>
 </template>
 <style scoped>
@@ -86,9 +103,13 @@
 </style>
 <script>
 import store from '../vuex/store'
+import {Refresh_SSRS_Token} from '../sso'
 import * as api from '../api'
 import MainLayout from '../components/MainLayout.vue'
 import ReportCategory from '../components/ReportCategory.vue'
+
+
+
 
 export default {
     data() {
@@ -97,10 +118,14 @@ export default {
       }
     },
     mounted: function () {
+      if (this.$store.state.accessToken !== ''){
+        Refresh_SSRS_Token(this, this.$refs.SSRS_SSO)
+      }
     },
     created: function(){
       if (this.$store.state.accessToken !== '' & this.$store.state.isLoaded === false) {
           api.getAuth().then((response) => {
+            console.log(response.body)
             this.$store.commit('load', response.body)
           }, (response) => {
             console.log('failed')

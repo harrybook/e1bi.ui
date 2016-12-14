@@ -10,7 +10,8 @@
 <style scoped>
 .tabContainer{
     margin-left:auto;
-    margin-right:auto
+    margin-right:auto;
+    width:1100px
 }
 </style>
 <script>
@@ -38,12 +39,16 @@ export default {
                     hideToolbar: false
                 }
                 let viz = new tableau.Viz(this.$refs.vizContainer, trustedUrl, options)
-                
+                viz.addEventListener("customviewload", function () {
+                    // document.domain = 'ef.com'
+                    // viz._impl.$iframe.contentWindow.document.getElementsByClassName('tabToolbarButton tab-widget share')[0].style.display="none" 
+                })
             }, (response) => {
                 console.log('failed')
                 console.log(response)
             })
-       } 
+       }
+
     },
     components:{
         MainLayout

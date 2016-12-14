@@ -23,3 +23,9 @@ const userManagerConfig = {
 
 const userMgr = new UserManager(userManagerConfig)
 export default userMgr
+
+export function Refresh_SSRS_Token(context, ssrs_iframe) {
+    let token = context.$store.state.idToken;
+    let url = process.env.SSRS_Server + '/reportserver/logon.aspx?token=@@&clientId=e1bi'.replace('@@', token);
+    ssrs_iframe.src = url;
+}
