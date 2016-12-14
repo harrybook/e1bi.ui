@@ -19,20 +19,20 @@
 
             <div class="menu">
               <template v-for="(category,index) in tabData.Categories">
-                <div :key="category.ProjectId" :class="'tag Color'+ (index%8+1)" :style="'opacity:1'">
+                <div :key="category.Category.CategoryId" :class="'tag Color'+ (index%8+1)" :style="(category.IsHidden? 'opacity:0.4': 'opacity:1')">
                     <img src="../assets/img/marketing standard -W.svg" class="iconMark iconPadding"/>
                     <div class="tagContent">
                         {{category.Category.CategoryName}}
                     </div>
-                    <a href="javascript:void(0)">
-                        <div class="tagSign">
+                    <a href="javascript:void(0)" @click='tagToggle(category)'>
+                        <div :class="(category.IsHidden? 'tagHide': 'tagSign')" class="tagSign">
                         </div>
                     </a>
                 </div>
               </template>
             </div>
 
-            <report-category v-for="(category,index) in tabData.Categories" :category="category">
+            <report-category v-for="(category,index) in tabData.Categories" :category="category" :color="'Color'+ (index%8+1)">
             </report-category>
           </div>
         </template>
@@ -140,7 +140,10 @@ export default {
     },
     methods: {
       tabToggle: function(index){
-        this.$store.commit('swithTab', index)
+        this.$store.commit('switchTab', index)
+      },
+      tagToggle: function(category){
+        this.$store.commit('switchTag', category)
       }
     }
 }

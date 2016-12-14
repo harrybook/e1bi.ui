@@ -1,6 +1,7 @@
 <template>
-    <div class="detailContent" :title="'This is '+ (report.IsReport? 'report':'dashboard')">
-        <div class="detailContentWap">
+    <div v-if="report.IsPlaceHolder" class="clearfix"></div>
+    <div v-else class="detailContent" :title="'This is a '+ (report.IsReport? 'report':'dashboard')">
+        <div :class="'detailContentWap '+ color">
             <div class="detailContentBlock">
                 <router-link :to="report.Url">
                     <div class="detailContentWap">
@@ -21,7 +22,7 @@
 </style>
 <script>
 export default {
-    props: ["report"]
+    props: ["report", "color"]
 }
 
 </script>

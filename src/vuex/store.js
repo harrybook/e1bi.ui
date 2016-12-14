@@ -35,11 +35,14 @@ export default new Vuex.Store({
                 index++
             }
         },
-        swithTab(state, index){
+        switchTab(state, index){
           state.authData.map(function(item,i){
             index === i ? item.IsActive = true: item.IsActive = false
           })
-        }
+        },
+        switchTag(state, category){
+          category.IsHidden = !category.IsHidden 
+        },
     },
     strict: process.env.NODE_ENV !== 'production'
 })
