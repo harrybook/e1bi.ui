@@ -1,10 +1,10 @@
 <template>
-  <div :class="{hidden:!IsLoaded}">
+  <div :class="{hidden:this.$store.state.isLoaded===false}">
     <main-layout>
       <div class="tabMenu">
         <div class="title">
             <img src="../assets/img/tableau reports.svg" class="iconMark">
-            REPORTS
+            REPORTS  
         </div>
 
         <template v-for="(item,index) in AuthData">
@@ -115,7 +115,7 @@ export default {
     data() {
       return   {
         AuthData: this.$store.state.authData,
-        IsLoaded: false
+        IsLoaded: this.$store.state.isLoaded
       }
     },
     mounted: function () {
@@ -126,9 +126,9 @@ export default {
     created: function(){
       if (this.$store.state.accessToken !== '' & this.$store.state.isLoaded === false) {
           api.getAuth().then((response) => {
-            console.log(response.body)
-            this.IsLoaded = true
             this.$store.commit('load', response.body)
+           console.log(this.$store.state.isLoaded)
+           console.log(this.IsLoaded)
           }, (response) => {
             console.log('failed')
             console.log(response)

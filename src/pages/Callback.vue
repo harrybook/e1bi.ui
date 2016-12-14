@@ -1,7 +1,5 @@
 <template>
-  <div class="callback">
-    Redirecting ...
-  </div>
+  <span>Redirecting...</span>
 </template>
 
 <style>

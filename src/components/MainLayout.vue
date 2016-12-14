@@ -27,8 +27,7 @@
 </template>
 <style>
     body {
-        text-align: center;
-        background: #565656;
+        margin:0px;
     }
     
     @font-face {
