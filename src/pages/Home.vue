@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{hidden:!IsLoaded}">
     <main-layout>
       <div class="tabMenu">
         <div class="title">
@@ -114,7 +114,8 @@ import ReportCategory from '../components/ReportCategory.vue'
 export default {
     data() {
       return   {
-        AuthData: this.$store.state.authData
+        AuthData: this.$store.state.authData,
+        IsLoaded: false
       }
     },
     mounted: function () {
@@ -126,6 +127,7 @@ export default {
       if (this.$store.state.accessToken !== '' & this.$store.state.isLoaded === false) {
           api.getAuth().then((response) => {
             console.log(response.body)
+            this.IsLoaded = true
             this.$store.commit('load', response.body)
           }, (response) => {
             console.log('failed')
