@@ -5,13 +5,25 @@
         <div class="title">
             <img src="../assets/img/tableau reports.svg" class="iconMark">
             REPORTS  
+            <div style="width:170px; height: 35px; float:right; ">
+                <a href="javascript:void(0)" id="LinkLastUpdateTime" v-on:mouseenter="updateToggle(true)" v-on:mouseleave="updateToggle(false)">LastUpdateTime</a>
+                <div class="LastUpdateContainer" ref="divLastUpdateTime" :class="{hidden:this.IsShowUpdate===false}">
+                  <div class="UpdateTime">
+                    <div class="UpdateTimeSpan">2016-12-05<br />04:16:21 (+08:00)</div>
+                    <div class="UpdateTimeSpan">2016-12-05<br />04:16:21 (+08:00)</div>
+                    <div class="UpdateTimeSpan">2016-12-05<br />04:16:21 (+08:00)</div>
+                  </div>
+                </div>
+            </div>
         </div>
-
-        <template v-for="(item,index) in AuthData">
-          <a href="javascript:void(0)" @click='tabToggle(index)'>
-              <div class="tabItem" :class="{active:item.IsActive}">{{item.Name}}</div>
-          </a>
-        </template>
+        
+        <div style="width: 35%; margin: 0 auto;">
+          <template v-for="(item,index) in AuthData">
+            <a href="javascript:void(0)" @click='tabToggle(index)'>
+                <div class="tabItem" :class="{active:item.IsActive}">{{item.Name}}</div>
+            </a>
+          </template>
+        </div>
        </div>
        <div class="Content">
         <template v-for="(tabData,index) in AuthData">
@@ -100,6 +112,25 @@
     .tabItem.active {
         border-bottom-color: #0086E5;
     }
+    .LastUpdateContainer {
+    position: absolute;
+     width: 231px;
+    height: 410px;
+    background-image: url(../assets/img/UpdateTime.png);
+    -webkit-filter: drop-shadow(1px 1px 2px #222);
+    filter: drop-shadow(1px 1px 2px #222);
+    }
+
+    .LastUpdateContainer .UpdateTime {
+        margin-top: 94px;
+        margin-left: 30px;
+        font-family: 'HelveticaNeue';
+    }
+
+    .UpdateTimeSpan {
+        font-size:21px; 
+        margin-bottom:63px;
+    }
 </style>
 <script>
 import store from '../vuex/store'
@@ -115,7 +146,8 @@ export default {
     data() {
       return   {
         AuthData: this.$store.state.authData,
-        IsLoaded: this.$store.state.isLoaded
+        IsLoaded: this.$store.state.isLoaded,
+        IsShowUpdate: false
       }
     },
     mounted: function () {
@@ -146,6 +178,13 @@ export default {
       },
       tagToggle: function(category){
         this.$store.commit('switchTag', category)
+      },
+      updateToggle: function(isShow) {
+        this.IsShowUpdate = isShow
+        let x = event.clientX - 100
+        let y = event.clientY + 10
+        this.$refs.divLastUpdateTime.style.left = x + 'px'
+        this.$refs.divLastUpdateTime.style.top = y + 'px'
       }
     }
 }
