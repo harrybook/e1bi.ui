@@ -9,9 +9,9 @@
                 <a href="javascript:void(0)" id="LinkLastUpdateTime" v-on:mouseenter="updateToggle(true)" v-on:mouseleave="updateToggle(false)">LastUpdateTime</a>
                 <div class="LastUpdateContainer" ref="divLastUpdateTime" :class="{hidden:this.IsShowUpdate===false}">
                   <div class="UpdateTime">
-                    <div class="UpdateTimeSpan">2016-12-05<br />04:16:21 (+08:00)</div>
-                    <div class="UpdateTimeSpan">2016-12-05<br />04:16:21 (+08:00)</div>
-                    <div class="UpdateTimeSpan">2016-12-05<br />04:16:21 (+08:00)</div>
+                    <div v-for="dw in this.$store.state.dwUpdateDate" class="UpdateTimeSpan">
+                      {{dw.UpdateDate}}<br/>{{dw.UpdateTime}}
+                    </div>
                   </div>
                 </div>
             </div>
@@ -133,14 +133,10 @@
     }
 </style>
 <script>
-import store from '../vuex/store'
-import {Refresh_SSRS_Token} from '../sso'
+import {refresh_ssrs} from '../sso'
 import * as api from '../api'
 import MainLayout from '../components/MainLayout.vue'
 import ReportCategory from '../components/ReportCategory.vue'
-
-
-
 
 export default {
     data() {
@@ -152,15 +148,14 @@ export default {
     },
     mounted: function () {
       if (this.$store.state.accessToken !== ''){
-        Refresh_SSRS_Token(this, this.$refs.SSRS_SSO)
+        refresh_ssrs(this, this.$refs.SSRS_SSO)
       }
     },
     created: function(){
       if (this.$store.state.accessToken !== '' & this.$store.state.isLoaded === false) {
           api.getAuth().then((response) => {
             this.$store.commit('load', response.body)
-           console.log(this.$store.state.isLoaded)
-           console.log(this.IsLoaded)
+            console.log(response.body)
           }, (response) => {
             console.log('failed')
             console.log(response)

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import UserMgr from './sso'
 import Home from './pages/Home'
 import Callback from './pages/Callback.vue'
 import Report from './pages/Report.vue'

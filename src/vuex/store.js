@@ -19,7 +19,8 @@ export default new Vuex.Store({
                 Name: 'CUSTOMIZATION',
                 IsActive: false,
                 Categories: []
-            }]
+            }],
+        dwUpdateDate: []
     },
     mutations: {
         login(state, sso) {
@@ -27,21 +28,19 @@ export default new Vuex.Store({
             state.accessToken = sso.access_token
             state.idToken = sso.id_token
         },
-        load(state, data){
+        load(state, data) {
             state.isLoaded = true
-            let index = 0
-            for(let item in data){
-                state.authData[index].Categories = data[item]
-                index++
-            }
+            state.authData[0].Categories = data.Standard
+            state.authData[1].Categories = data.Custom
+            state.dwUpdateDate = data.DWUpdateDate
         },
-        switchTab(state, index){
-          state.authData.map(function(item,i){
-            index === i ? item.IsActive = true: item.IsActive = false
-          })
+        switchTab(state, index) {
+            state.authData.map(function (item, i) {
+                index === i ? item.IsActive = true : item.IsActive = false
+            })
         },
-        switchTag(state, category){
-          category.IsHidden = !category.IsHidden 
+        switchTag(state, category) {
+            category.IsHidden = !category.IsHidden
         },
     },
     strict: process.env.NODE_ENV !== 'production'

@@ -1,4 +1,4 @@
-import {UserManager} from 'oidc-client'
+import { UserManager } from 'oidc-client'
 
 const protocal = window.location.protocol
 const hostname = window.location.hostname
@@ -24,8 +24,9 @@ const userManagerConfig = {
 const userMgr = new UserManager(userManagerConfig)
 export default userMgr
 
-export function Refresh_SSRS_Token(context, ssrs_iframe) {
-    let token = context.$store.state.idToken;
-    let url = process.env.SSRS_Server + '/reportserver/logon.aspx?token=@@&clientId=e1bi'.replace('@@', token);
-    ssrs_iframe.src = url;
+export function refresh_ssrs(context, ssrs_iframe) {
+  let token = context.$store.state.idToken;
+  let url = process.env.SSRS_Server + '/reportserver/logon.aspx?token=@@&clientId=e1bi'.replace('@@', token);
+  ssrs_iframe.src = url;
 }
+
