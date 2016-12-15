@@ -17,9 +17,10 @@
 
         <div class="foot">
             <div class="logoLast">
-                <img src="../assets/img/logo_footer.svg" style="margin:44px 40px 30px 44px" />
+                <img src="../assets/img/logo_footer.svg" style="margin:22px 40px 30px 20px" />
             </div>
             <span>
+                Privacy Policy<br /><br />
                 © EF Education First 2016. All rights reserved.
             </span>
         </div>
@@ -28,6 +29,7 @@
 <style>
     body {
         margin:0px;
+        overflow-y:scroll;
     }
     
     @font-face {
@@ -53,7 +55,8 @@
     .wap {
         width: 100%;
         min-width: 1024px;
-        height: auto;
+        min-height: 600px;
+        /*height: auto;*/
         MARGIN-RIGHT: auto;
         MARGIN-LEFT: auto;
     }
@@ -93,7 +96,7 @@
     
     .main {
         width: 100%;
-        min-height: 350px;
+        min-height: 600px;
         overflow: hidden;
         background-color: #F2F2F2;
         background-size: 83px 100%;
@@ -281,8 +284,8 @@
     
     .foot {
         width: 100%;
-        height: 130px;
-        background: #4b4b4c;
+        height: 80px;
+        background: #4a4a4a;
         text-align: left;
         color: #dedede;
         font-size: 12px;
@@ -291,12 +294,12 @@
     
     .logoLast {
         float: left;
-        width: 136px;
+        width: 106px;
     }
-    
+
     .foot span {
         float: left;
-        margin-top: 73px;
+        margin-top: 20px;
     }
     /*Color*/
     
