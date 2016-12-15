@@ -1,13 +1,18 @@
 <template>
   <div>
     <main-layout>
-        <div class="SubContent">
+        <div class="reportContainer">
             <iframe id="report_iframe"  :src="url" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" scrolling="no"  style="width:1200px; height:850px"></iframe>
         </div>
     </main-layout>
   </div>
 </template>
-<style>
+<style scoped>
+.reportContainer{
+    margin-left:auto;
+    margin-right:auto;
+    width:1200px
+}
 </style>
 <script>
 import MainLayout from '../components/MainLayout.vue'
