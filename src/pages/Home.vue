@@ -17,13 +17,14 @@
             </div>
         </div>
         
-        <div style="width: 35%; margin: 0 auto;">
+        <!--Cutomization-->
+        <!--<div style="width: 35%; margin: 0 auto;">
           <template v-for="(item,index) in AuthData">
             <a href="javascript:void(0)" @click='tabToggle(index)'>
                 <div class="tabItem" :class="{active:item.IsActive}">{{item.Name}}</div>
             </a>
           </template>
-        </div>
+        </div>-->
        </div>
        <div class="Content">
         <template v-for="(tabData,index) in AuthData">
@@ -34,7 +35,7 @@
                 <div :key="category.Category.CategoryId" :class="'tag Color'+ (index%8+1)" :style="(category.IsHidden? 'opacity:0.4': 'opacity:1')">
                     <img src="../assets/img/marketing standard -W.svg" class="iconMark iconPadding"/>
                     <div class="tagContent">
-                        {{category.Category.CategoryName}}
+                      <a :href="'#' + category.Category.CategoryName">{{category.Category.CategoryName}}</a>
                     </div>
                     <a href="javascript:void(0)" @click='tagToggle(category)'>
                         <div :class="(category.IsHidden? 'tagHide': 'tagSign')" class="tagSign">
@@ -63,12 +64,12 @@
         width: 100%;
         float: left;
         padding-left: 28px;
-        margin-bottom: 25px;
+        /*margin-bottom: 25px;*/
         text-align: left;
         font-size: 14px;
         font-family: 'HelveticaNeueBold';
         color: #4a4a4a;
-        box-shadow: 0px 0.5px 3px;
+        /*box-shadow: 0px 0.5px 3px;*/
     }
     
     .tabMenu a {
@@ -130,6 +131,61 @@
     .UpdateTimeSpan {
         font-size:21px; 
         margin-bottom:63px;
+    }
+
+    .tag {
+        height: 40px;
+        overflow: hidden;
+        min-width: 160px;
+        float: left;
+        margin-top: 20px;
+        margin-right: 20px;
+        box-shadow: 0px 0.5px 3px #000;
+        font-family: 'HelveticaNeue';
+        text-align: left;
+        color: #fff;
+    }
+    
+    .tag img {
+        float: left;
+    }
+    
+    .tag a:hover div {
+        background-image: url("../assets/img/view-Hover.svg");
+    }
+    
+    .tagContent {
+        height: 30px;
+        float: left;
+        margin-top: 10px;
+        margin-right: 15px;
+    }
+
+    .tagContent>a {
+        color: white;
+        text-decoration: none;
+    }
+    
+    .tagSign {
+        height: 100%;
+        width: 40px;
+        background-image: url("../assets/img/view.svg");
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-color: #fff;
+        background-position: center;
+        float: right;
+    }
+    
+    .tagHide {
+        height: 100%;
+        width: 40px;
+        background-image: url("../assets/img/hide.svg");
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-color: #fff;
+        background-position: center;
+        float: right;
     }
 </style>
 <script>

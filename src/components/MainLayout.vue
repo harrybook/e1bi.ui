@@ -12,7 +12,7 @@
                     <div>{{this.$store.state.email.split('@')[0]}}</div>
                 </div>
                 <div class="feature" :class="{hidden:this.IsShowFeature===false}">
-                    <div class="item">
+                    <div class="item last">
                         <div @click="logout()">Log Out</div>
                     </div>
                 </div>
@@ -99,6 +99,7 @@
         height: 100%;
         padding-right: 40px;
         position: relative;
+        font-size: 18px;
     }
     
     .userinfo .container{
@@ -153,6 +154,10 @@
         transition: none
      }
 
+     .item.last >div{
+        border-bottom: none;
+     }
+
     .main {
         width: 100%;
         min-height: 600px;
@@ -174,7 +179,7 @@
         margin-top: 25px;
         margin-right: 33px;
         padding-bottom: 15px;
-        margin-bottom: 30px;
+        /*margin-bottom: 30px;*/
         float: left;
         text-align: left;
         font-size: 14px;
@@ -182,103 +187,7 @@
         color: #5c5c5c;
         border-bottom: 1px solid #000;
     }
-    
-       
-    #SMARTREPORTS {
-        display: none;
-    }
-    
-    #CUSTOMIZABLE {
-        display: none;
-    }
-    
-    .detail {
-        float: left;
-        width: 100%;
-        margin-top: 40px;
-    }
-    
-    .detailHead {
-        width: 100%;
-        padding-bottom: 10px;
-        float: left;
-        text-align: left;
-        font-size: 16px;
-        font-family: 'HelveticaNeue-Medium';
-        color: #5c5c5c;
-        border-bottom: 1px solid #cbcccc;
-    }
-    
-    .detailContent {
-        float: left;
-        width: 30%;
-        height: auto;
-        overflow: hidden;
-        margin-top: 20px;
-        box-shadow: 0px 1px 1px;
-        background-color: #fff;
-        margin-right: 3.3%;
-        position: relative;
-    }
-    
-    .clearfix {
-        clear: both;
-    }
-    
-    .detailContent a div {
-        background: #456981;
-        color: #fff;
-    }
-    
-    .detailContent a:hover div {
-        color: #fff;
-        background: #0087E6;
-    }
-    
-    .detailContentBlock {
-        float: right;
-        width: 98%;
-    }
-    
-    .detailContentWap {
-        width: 100%;
-        height: 100%;
-        float: left;
-    }
-    
-    .detailContentTitle {
-        width: 90%;
-        height: 100%;
-        background-color: #456981;
-        padding: 10px 20px 10px 15px;
-        vertical-align: top;
-        font-size: 16px;
-        font-family: 'HelveticaNeue-CondensedBold';
-        color: #fff;
-        line-height: 24px;
-        text-align: left;
-        float: left;
-    }
-    
-    .detailContentText {
-        width: auto;
-        height: auto;
-        float: left;
-        background-color: #fff;
-        padding: 20px;
-        font-size: 13px;
-        font-family: 'HelveticaNeue';
-        color: #5c5c5c;
-        line-height: 20px;
-        text-align: left;
-    }
-    
-    .iconMark {
-        margin-right: 10px;
-        width: 22px;
-        height: 22px;
-    }
-    
+
     .iconPadding {
         padding: 10px;
     }

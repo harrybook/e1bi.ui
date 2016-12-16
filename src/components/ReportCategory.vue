@@ -1,6 +1,6 @@
 <template>
   <div class="detail" :class="{hidden:category.IsHidden}">
-    <div class="detailHead">
+    <div :id="category.Category.CategoryName" class="detailHead">
         <img src="../assets/img/marketing standard.svg" class="iconMark" />
         {{category.Category.CategoryName}}
     </div>
@@ -8,9 +8,33 @@
   </div>
 </template>
 <style scoped>
-.hidden{
-  display: none
-}
+
+  .hidden{
+    display: none
+  }
+
+  .iconMark {
+      margin-right: 10px;
+      width: 22px;
+      height: 22px;
+  }
+
+  .detail {
+      float: left;
+      width: 100%;
+      margin-top: 40px;
+  }
+  
+  .detailHead {
+      width: 100%;
+      padding-bottom: 10px;
+      float: left;
+      text-align: left;
+      font-size: 16px;
+      font-family: 'HelveticaNeue-Medium';
+      color: #5c5c5c;
+      border-bottom: 1px solid #cbcccc;
+  }
 </style>
 <script>
 import report from './Report.vue'
