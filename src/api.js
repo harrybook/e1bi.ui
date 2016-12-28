@@ -12,4 +12,12 @@ export function getViz(path) {
     });
 }
 
+export function getReport(path) {
+    return Vue.http.get('api/ssrs', {
+        params: {
+            path: path
+        }
+    });
+}
+
 

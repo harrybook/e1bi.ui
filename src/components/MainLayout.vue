@@ -200,56 +200,6 @@
         padding-bottom: 5px;
     }
     
-    .tag {
-        height: 40px;
-        overflow: hidden;
-        min-width: 160px;
-        float: left;
-        margin-top: 20px;
-        margin-right: 20px;
-        box-shadow: 0px 0.5px 3px #000;
-        font-family: 'HelveticaNeue';
-        text-align: left;
-        color: #fff;
-    }
-    
-    .tag img {
-        float: left;
-    }
-    
-    .tag a:hover div {
-        background-image: url("../assets/img/view-Hover.svg");
-    }
-    
-    .tagContent {
-        height: 30px;
-        float: left;
-        margin-top: 10px;
-        margin-right: 15px;
-    }
-    
-    .tagSign {
-        height: 100%;
-        width: 40px;
-        background-image: url("../assets/img/view.svg");
-        background-repeat: no-repeat;
-        background-size: 30px;
-        background-color: #fff;
-        background-position: center;
-        float: right;
-    }
-    
-    .tagHide {
-        height: 100%;
-        width: 40px;
-        background-image: url("../assets/img/hide.svg");
-        background-repeat: no-repeat;
-        background-size: 30px;
-        background-color: #fff;
-        background-position: center;
-        float: right;
-    }
-    
     .foot {
         width: 100%;
         height: 80px;

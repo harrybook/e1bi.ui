@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from './pages/Home'
 import Callback from './pages/Callback.vue'
 import Report from './pages/Report.vue'
+import ssrs from './pages/ssrs.vue'
 import Tableau from './pages/Tableau.vue'
 
 
@@ -16,6 +17,7 @@ const router = new VueRouter({
         { path: '/', component: Home },
         { path: '/callback', component: Callback },
         { path: '/report', component: Report },
+        { path: '/ssrs', component: ssrs },
         { path: '/tableau', component: Tableau },
         { path: '*', redirect: '/' }
     ]

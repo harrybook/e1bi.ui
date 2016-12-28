@@ -31,7 +31,8 @@ export default new Vuex.Store({
         load(state, data) {
             state.isLoaded = true
             state.authData[0].Categories = data.Standard
-            // state.authData[1].Categories = data.Custom
+            // Customization
+            // state.authData[1].Categories = data.Custom 
             state.dwUpdateDate = data.DWUpdateDate
         },
         switchTab(state, index) {

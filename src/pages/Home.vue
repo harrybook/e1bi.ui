@@ -120,6 +120,7 @@
     background-image: url(../assets/img/UpdateTime.png);
     -webkit-filter: drop-shadow(1px 1px 2px #222);
     filter: drop-shadow(1px 1px 2px #222);
+    z-index: 1000;
     }
 
     .LastUpdateContainer .UpdateTime {
@@ -136,7 +137,7 @@
     .tag {
         height: 40px;
         overflow: hidden;
-        min-width: 160px;
+        min-width: 210px;
         float: left;
         margin-top: 20px;
         margin-right: 20px;
