@@ -6,7 +6,9 @@
             </span>
         </label>
 
-         <el-select v-model="value" multiple placeholder="Please select">
+         <el-select v-model="value" multiple placeholder="Please select" 
+            v-on:change="valueChange" 
+            v-on:visible-change="visibleChange">
             <el-option
                 v-for="item in parameter.Values"
                 :label="item.Label"
@@ -20,7 +22,9 @@
                 {{parameter.Label}}
             </span>
         </label>
-         <el-select v-model="value" placeholder="Please select">
+         <el-select v-model="value" placeholder="Please select" 
+            v-on:change="valueChange" 
+            v-on:visible-change="visibleChange">
             <el-option
                 v-for="item in parameter.Values"
                 :label="item.Label"
@@ -51,17 +55,30 @@ export default {
         return {
             pickerOptions: {
             },
-            value:""
+            value: this.parameter.ControlType == 'MultiDropdown' ? [] : {},
+            valueChanged: false
         }
     },
     props: ["parameter","index"],
     methods: {
         encode: function(str){
             return html.encode(str)
+        },
+        valueChange: function(){
+            let _self = this
+            this.valueChanged = true
+            this.parameter.Values.map(function(item){
+                item.Active = _self.parameter.ControlType === 'MultiDropdown'?
+                                _self.value.indexOf(item.Value)>-1 : _self.value==item.value
+            })
+        },
+        visibleChange: function(show){
+            if(!show && this.valueChanged && this.parameter.HasDependency){
+                this.$parent.$parent.getParameter()
+            }
         }
     },
     created: function(){
-
     }
 }
 

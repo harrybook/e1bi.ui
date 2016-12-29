@@ -12,12 +12,13 @@ export function getViz(path) {
     });
 }
 
-export function getReport(path) {
-    return Vue.http.get('api/ssrs', {
-        params: {
-            path: path
+export function getReport(path, pcList, genReport) {
+    return Vue.http.post('api/ssrs', {
+            Path: path,
+            ParameterControlList: pcList,
+            GenReport: genReport
         }
-    });
+    );
 }
 
 
