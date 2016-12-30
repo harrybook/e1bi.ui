@@ -49,7 +49,7 @@ export default {
     created: function(){
       for(let index in this.category.Reports){
         let reportData = this.category.Reports[index]
-        let urlPre = reportData.IsReport === true ? 'report?path=' : 'tableau?path='
+        let urlPre = reportData.IsReport === true ? 'ssrs?path=' : 'tableau?path='
         reportData.Url = urlPre + reportData.ReportPath 
       }
       

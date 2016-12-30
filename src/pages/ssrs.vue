@@ -1,7 +1,7 @@
 <template>
   <div>
-    <main-layout v-loading.body="loading">
-        <el-row>
+    <main-layout>
+        <el-row v-loading.body="loading">
             <el-col :span="24">
                 <div class="grid-content bg-purple-dark">
                     <table cellpadding="0" cellspacing="0" width="100%" class="ParametersFrame ParamsGrid MenuBarBkGnd">
@@ -35,6 +35,11 @@
                                             <tr>
                                                 <td>
                                                     <el-button @click="getParameter(true)">Generate Report</el-button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <el-button @click="getParameter(true)">Send to me</el-button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -116,7 +121,7 @@ export default {
     computed: {
         chunkedParameters () {
             let chunked = []
-            let i,j, tempArray, chunk = 3
+            let i,j, tempArray, chunk = 2
             for(let i=0,j=this.Parameters.length;i<j;i+=chunk){
                 tempArray = this.Parameters.slice(i, i + chunk)
                 chunked.push(tempArray)

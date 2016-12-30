@@ -127,7 +127,8 @@
         box-shadow: 0 .3125rem .625rem rgba(0,0,0,.3);
         position: absolute;
         right: 0;
-        top: calc(100% + .0625rem)
+        top: calc(100% + .0625rem);
+        z-index: 1000;
     }
 
     .item {
