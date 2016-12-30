@@ -1,11 +1,5 @@
 <template>
     <div v-if="parameter.ControlType == 'MultiDropdown'">
-        <label>
-            <span>
-                {{parameter.Label}}
-            </span>
-        </label>
-
          <el-select v-model="value" multiple placeholder="Please select" 
             v-on:change="valueChange" 
             v-on:visible-change="visibleChange">
@@ -17,11 +11,6 @@
          </el-select>
     </div>
     <div v-else-if="parameter.ControlType == 'Dropdown'">
-        <label>
-            <span>
-                {{parameter.Label}}
-            </span>
-        </label>
          <el-select v-model="value" placeholder="Please select" 
             v-on:change="valueChange" 
             v-on:visible-change="visibleChange">
@@ -33,11 +22,6 @@
          </el-select>
     </div>
     <div v-else>
-        <label>
-            <span>
-                {{parameter.Label}}
-            </span>
-        </label>
           <el-date-picker
             v-model="parameter.Values[0].Value"
             type="date"
@@ -59,7 +43,7 @@ export default {
             valueChanged: false
         }
     },
-    props: ["parameter","index"],
+    props: ["parameter"],
     methods: {
         encode: function(str){
             return html.encode(str)
@@ -74,7 +58,8 @@ export default {
         },
         visibleChange: function(show){
             if(!show && this.valueChanged && this.parameter.HasDependency){
-                this.$parent.$parent.getParameter()
+                this.valueChanged = false
+                this.$parent.$parent.$parent.$parent.getParameter()
             }
         }
     },
