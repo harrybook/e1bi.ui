@@ -10,7 +10,7 @@
                                 <td width="100%" height="100%">
                                     <table>
                                         <tbody>
-                                            <tr isparameterrow="true" v-for="chunk in this.chunkedParameters">
+                                            <tr v-for="chunk in this.chunkedParameters">
                                                 <template  v-for="param in chunk">
                                                     <td class="ParamLabelCell">
                                                         <label>
@@ -34,7 +34,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <el-button @click="getParameter(true)">Generate Report</el-button>
+                                                    <el-button @click="getParameter(true)">View Report</el-button>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -121,7 +121,7 @@ export default {
     computed: {
         chunkedParameters () {
             let chunked = []
-            let i,j, tempArray, chunk = 2
+            let i,j, tempArray, chunk = 3
             for(let i=0,j=this.Parameters.length;i<j;i+=chunk){
                 tempArray = this.Parameters.slice(i, i + chunk)
                 chunked.push(tempArray)
@@ -137,9 +137,11 @@ export default {
         if (this.$store.state.accessToken !== '') {
         let path = this.$store.state.route.query.path
         this.loading = true
+        this.$refs.report.style.display = 'none'
         api.getReport(path, this.Parameters, genReport).then((response) => {
             if(genReport){
                 this.$refs.report.innerHTML = response.body.htmlString
+                this.$refs.report.style.display = ''
             }
             else{
                 this.Parameters = response.body

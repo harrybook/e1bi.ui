@@ -99,7 +99,8 @@
         height: 100%;
         padding-right: 40px;
         position: relative;
-        font-size: 18px;
+        font-size: 16px;
+        font-family:'HelveticaNeue';
     }
     
     .userinfo .container{
@@ -152,7 +153,10 @@
         padding: 10px 0;
         padding: .625rem 0;
         -webkit-transition: none;
-        transition: none
+        transition: none;
+        font-family:Helvetica Neue,Microsoft YaHei,sans-serif;
+        font-size: 14px;
+        font-weight: 500;
      }
 
      .item.last >div{

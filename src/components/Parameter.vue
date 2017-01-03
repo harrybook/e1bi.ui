@@ -23,7 +23,7 @@
     </div>
     <div v-else>
           <el-date-picker
-            v-model="parameter.Values[0].Value"
+            v-model="value"
             type="date"
             placeholder="Select date"
             :picker-options="pickerOptions">
@@ -38,6 +38,7 @@ export default {
     data() {
         return {
             pickerOptions: {
+                firstDayOfWeek: 2
             },
             value: this.parameter.ControlType == 'MultiDropdown' ? [] : {},
             valueChanged: false
@@ -64,6 +65,28 @@ export default {
         }
     },
     created: function(){
+        let v = this.value
+        if(this.parameter.ControlType == 'MultiDropdown'){
+            for(let i=0; i< this.parameter.Values.length; i++){
+                let pv = this.parameter.Values[i]
+                if(pv.Active){
+                    v.push(pv.Value)
+                }
+            }
+        }
+        else if(this.parameter.ControlType == 'Dropdown'){
+            for(let i=0; i< this.parameter.Values.length; i++){
+                let pv = this.parameter.Values[i]
+                if(pv.Active){
+                    v = pv.Value
+                    break
+                }
+            }
+        }
+        else{
+            v = this.parameter.Values[0].Value
+        }
+        this.value = v
     }
 }
 

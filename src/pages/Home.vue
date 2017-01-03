@@ -6,7 +6,11 @@
             <img src="../assets/img/tableau reports.svg" class="iconMark">
             REPORTS  
             <div style="width:170px; height: 35px; float:right; ">
-                <a href="javascript:void(0)" id="LinkLastUpdateTime" v-on:mouseenter="updateToggle(true)" v-on:mouseleave="updateToggle(false)">LastUpdateTime</a>
+                <a href="javascript:void(0)"  style="font-family:HelveticaNeue" 
+                  v-on:mouseenter="updateToggle(true, $event)" 
+                  v-on:mouseleave="updateToggle(false, $event)">
+                  LastUpdateTime
+                </a>
                 <div class="LastUpdateContainer" ref="divLastUpdateTime" :class="{hidden:this.IsShowUpdate===false}">
                   <div class="UpdateTime">
                     <div v-for="dw in this.$store.state.dwUpdateDate" class="UpdateTimeSpan">
@@ -120,6 +124,7 @@
     background-image: url(../assets/img/UpdateTime.png);
     -webkit-filter: drop-shadow(1px 1px 2px #222);
     filter: drop-shadow(1px 1px 2px #222);
+    font-family:HelveticaNeue;
     z-index: 1000;
     }
 
@@ -231,7 +236,7 @@ export default {
       tagToggle: function(category){
         this.$store.commit('switchTag', category)
       },
-      updateToggle: function(isShow) {
+      updateToggle: function(isShow, event) {
         this.IsShowUpdate = isShow
         let x = event.clientX - 100
         let y = event.clientY + 10
