@@ -18,7 +18,8 @@ const userManagerConfig = {
   silent_redirect_uri: `${protocal}//${hostname}${port}/callback`,
   automaticSilentRenew: false,
   filterProtocolClaims: true,
-  loadUserInfo: true
+  loadUserInfo: true,
+  post_logout_redirect_uri:`${protocal}//${hostname}${port}`
 }
 
 const userMgr = new UserManager(userManagerConfig)

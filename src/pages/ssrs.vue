@@ -34,12 +34,12 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <el-button @click="getParameter(true)">View Report</el-button>
+                                                    <el-button @click="viewReport()">View Report</el-button>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <el-button @click="getParameter(true)">Send to me</el-button>
+                                                    <el-button @click="sendToMe()">Send to me</el-button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -121,7 +121,10 @@ export default {
     computed: {
         chunkedParameters () {
             let chunked = []
-            let i,j, tempArray, chunk = 3
+            let i,j, tempArray, chunk = 2
+            if(this.Parameters.length >= 6){
+                chunk = 3
+            }
             for(let i=0,j=this.Parameters.length;i<j;i+=chunk){
                 tempArray = this.Parameters.slice(i, i + chunk)
                 chunked.push(tempArray)
@@ -157,6 +160,41 @@ export default {
             console.log(response)
         })
        }
+      },
+      validateParameter: function(){
+          for(let i = 0;i < this.Parameters.length; i++){
+              let pass = false
+              let p = this.Parameters[i]
+              for(let j = 0; j < p.Values.length; j++){
+                  let pv = p.Values[j]
+                  if(pv.Active){
+                      pass = true
+                      break
+                  }
+              }
+              if(pass === false){
+                this.$notify.error({
+                    title: 'Error',
+                    message: 'Parameter value for ' + p.Label + ' is empty'
+                })
+                return false
+              }
+              else{
+                  continue
+              }
+
+          }
+          return true
+      },
+      viewReport: function(){
+          if(this.validateParameter()){
+            this.getParameter(true)
+          }
+      },
+      sendToMe: function(){
+          if(this.validateParameter()){
+            this.getParameter(true)
+          }
       }
     },
     mounted: function(){

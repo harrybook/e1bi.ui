@@ -67,12 +67,12 @@ export default {
     created: function(){
         let v = this.value
         if(this.parameter.ControlType == 'MultiDropdown'){
-            for(let i=0; i< this.parameter.Values.length; i++){
-                let pv = this.parameter.Values[i]
-                if(pv.Active){
-                    v.push(pv.Value)
-                }
-            }
+            // for(let i=0; i< this.parameter.Values.length; i++){
+            //     let pv = this.parameter.Values[i]
+            //     if(pv.Active){
+            //         v.push(pv.Value)
+            //     }
+            // }
         }
         else if(this.parameter.ControlType == 'Dropdown'){
             for(let i=0; i< this.parameter.Values.length; i++){
