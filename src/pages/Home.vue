@@ -56,7 +56,6 @@
        </div>
 
     </main-layout>
-    <iframe ref="SSRS_SSO" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" scrolling="no"  style="width:0px; height:0px" src=""></iframe>
   </div>
 </template>
 <style scoped>
@@ -195,7 +194,6 @@
     }
 </style>
 <script>
-import {refresh_ssrs} from '../sso'
 import * as api from '../api'
 import MainLayout from '../components/MainLayout.vue'
 import ReportCategory from '../components/ReportCategory.vue'
@@ -209,15 +207,11 @@ export default {
       }
     },
     mounted: function () {
-      if (this.$store.state.accessToken !== ''){
-        refresh_ssrs(this, this.$refs.SSRS_SSO)
-      }
     },
     created: function(){
       if (this.$store.state.accessToken !== '' & this.$store.state.isLoaded === false) {
           api.getAuth().then((response) => {
             this.$store.commit('load', response.body)
-            console.log(response.body)
           }, (response) => {
             console.log('failed')
             console.log(response)

@@ -7,7 +7,6 @@ export default new Vuex.Store({
     state: {
         email: '',
         accessToken: '',
-        idToken: '',
         isLoaded: false,
         authData: [
             {
@@ -26,7 +25,6 @@ export default new Vuex.Store({
         login(state, sso) {
             state.email = sso.profile.email
             state.accessToken = sso.access_token
-            state.idToken = sso.id_token
         },
         load(state, data) {
             state.isLoaded = true

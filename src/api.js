@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 export function getAuth() {
-    return Vue.http.get('api/auth');
+    return Vue.http.get('api/auth')
 }
 
 export function getViz(path) {
@@ -9,7 +9,7 @@ export function getViz(path) {
         params: {
             path: path
         }
-    });
+    })
 }
 
 export function getReport(path, pcList, genReport) {
@@ -18,7 +18,7 @@ export function getReport(path, pcList, genReport) {
             ParameterControlList: pcList,
             GenReport: genReport
         }
-    );
+    )
 }
 
 

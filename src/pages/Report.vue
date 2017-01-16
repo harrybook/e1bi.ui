@@ -24,7 +24,7 @@ export default {
         }
     },
     created: function(){
-        let urlTemplate = process.env.SSRS_Server + "/Reports/report@@?rs:embed=true"
+        let urlTemplate = process.env.SSRSServer + "/Reports/report@@?rs:embed=true"
         this.url = urlTemplate.replace('@@', this.$store.state.route.query.path)
     },
     components:{

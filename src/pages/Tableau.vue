@@ -32,7 +32,7 @@ export default {
             let path = this.$store.state.route.query.path
             api.getViz(path).then((response) => {
                 console.log(response)
-                let trustedUrl = response.body.TrustedUrl
+                let trustedUrl = process.env.TableauServer + response.body.TrustedUrl
                 var options = {
                     usePublishedSize: true,
                     toolbarPosition: 'top',

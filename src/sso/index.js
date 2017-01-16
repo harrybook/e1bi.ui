@@ -23,11 +23,24 @@ const userManagerConfig = {
 }
 
 const userMgr = new UserManager(userManagerConfig)
-export default userMgr
 
-export function refresh_ssrs(context, ssrs_iframe) {
-  let token = context.$store.state.idToken;
-  let url = process.env.SSRS_Server + '/reportserver/logon.aspx?token=@@&clientId=e1bi'.replace('@@', token);
-  ssrs_iframe.src = url;
+export function refresh_ssrs(token) {
+  let url = process.env.SSRSServer + '/reportserver/logon.aspx?token=@@&clientId=e1bi'.replace('@@', token)
+
+  let iframe = document.createElement('iframe')
+  iframe.frameborder = "0"
+  iframe.allowtransparency = "true"
+  iframe.marginheight = "0" 
+  iframe.marginwidth = "0"
+  iframe.style.width = '0px'
+  iframe.style.height = '0px'
+  document.body.appendChild(iframe);
+  iframe.src = url
+  iframe.onload = function (){
+    iframe.src = process.env.SSRSServer + '/reports/report/Source/DummyReport?rs:embed=true'
+    iframe.onload = function (){
+    }
+  }
 }
 
+export default userMgr
