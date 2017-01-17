@@ -4731,6 +4731,10 @@ request@^2.79.0, request@~2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
+require-all@2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/require-all/download/require-all-2.0.0.tgz#762a1f00c2fc1e24361981d4c1da31911f5fbe5d"
+
 require-uncached@^1.0.2:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/require-uncached/download/require-uncached-1.0.3.tgz#4e0d56d6c9662fd31e43011c4b95aa49955421d3"

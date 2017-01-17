@@ -17,6 +17,7 @@
     "handlebars-loader": "1.4.0",
     "immutable": "3.8.1",
     "oidc-client": "^1.2.2",
+    "require-all": "2.0.0",
     "tableau-api": "git://github.com/harrybook/tableau-api",
     "vue": "^2.1.8",
     "vue-loader": "^10.0.2",
