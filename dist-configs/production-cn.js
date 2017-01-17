@@ -1,1 +1,0 @@
-var __CLIENT_CONFIG__ = Object.freeze({"SSO_ClientId":"e1bi","SSO_AuthorityUrl":"http://e1bi-api.ef.cn/ids","ApiBase":"http://e1bi-api.ef.cn/api","SSRSServer":"http://e1ssrs.ef.cn","TableauServer":"http://e1tableau.ef.cn"})
