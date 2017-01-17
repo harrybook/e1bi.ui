@@ -16,6 +16,7 @@
 </style>
 <script>
 import MainLayout from '../components/MainLayout.vue'
+import config from '../../config'
 
 export default {
     data() {
@@ -24,7 +25,7 @@ export default {
         }
     },
     created: function(){
-        let urlTemplate = process.env.SSRSServer + "/Reports/report@@?rs:embed=true"
+        let urlTemplate = config.get('SSRSServer') + "/Reports/report@@?rs:embed=true"
         this.url = urlTemplate.replace('@@', this.$store.state.route.query.path)
     },
     components:{

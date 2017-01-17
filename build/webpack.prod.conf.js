@@ -1,5 +1,5 @@
 var path = require('path')
-var config = require('../config')
+var config = require('./build.config')
 var utils = require('./utils')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
@@ -56,7 +56,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency',
+      isProd: process.env.NODE_ENV === 'production'
     }),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({

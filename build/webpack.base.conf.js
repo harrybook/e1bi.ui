@@ -1,5 +1,5 @@
 var path = require('path')
-var config = require('../config')
+var config = require('./build.config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 
@@ -42,6 +42,10 @@ module.exports = {
       // }
     ],
     loaders: [
+      {
+        test: /\.(html|hbs)$/,
+        loader: 'handlebars',
+      },
       {
         test: /\.vue$/,
         loader: 'vue'

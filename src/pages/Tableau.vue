@@ -17,6 +17,7 @@
 <script>
 import tableau from 'tableau-api'
 import * as api from '../api'
+import config from '../../config'
 import MainLayout from '../components/MainLayout.vue'
 
 export default {
@@ -31,8 +32,7 @@ export default {
         if (this.$store.state.accessToken !== '') {
             let path = this.$store.state.route.query.path
             api.getViz(path).then((response) => {
-                console.log(response)
-                let trustedUrl = process.env.TableauServer + response.body.TrustedUrl
+                let trustedUrl = config.get('TableauServer') + response.body.TrustedUrl
                 var options = {
                     usePublishedSize: true,
                     toolbarPosition: 'top',
@@ -44,7 +44,6 @@ export default {
                     // viz._impl.$iframe.contentWindow.document.getElementsByClassName('tabToolbarButton tab-widget share')[0].style.display="none" 
                 })
             }, (response) => {
-                console.log('failed')
                 console.log(response)
             })
        }
