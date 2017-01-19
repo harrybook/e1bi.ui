@@ -26,7 +26,7 @@ export default {
       }
     },
     created: function(){
-  
+        document.body.scrollTop = 0
     },
     mounted: function(){
         if (this.$store.state.accessToken !== '') {
