@@ -312,6 +312,7 @@
 
 <script>
 import userMgr from '../sso'
+import * as api from '../api'
 
 export default{
     data(){
@@ -327,6 +328,16 @@ export default{
             localStorage.lastPathUrl = location.pathname + location.search
             if (this.$store.state.accessToken === '') {
                 userMgr.signinRedirect()
+            }
+            else{
+                if (this.$store.state.isLoaded === false) {
+                    api.getAuth().then((response) => {
+                        this.$store.commit('load', response.body)
+                    }, (response) => {
+                        console.log('failed')
+                        console.log(response)
+                    })
+                }
             }
         },
         logout: function(){

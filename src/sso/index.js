@@ -25,7 +25,7 @@ const userManagerConfig = {
 
 const userMgr = new UserManager(userManagerConfig)
 
-export function refresh_ssrs(token) {
+export function refresh_ssrs(token, callback) {
   let ssrsserver = config.get('SSRSServer')
   let url = ssrsserver + '/reportserver/logon.aspx?token=@@&clientId=e1bi'.replace('@@', token)
 
@@ -39,6 +39,9 @@ export function refresh_ssrs(token) {
   document.body.appendChild(iframe);
   iframe.src = url
   iframe.onload = function (){
+    if(callback){
+      callback()
+    }
     iframe.src = ssrsserver + '/reports/report/Source/DummyReport?rs:embed=true'
     iframe.onload = function (){
     }

@@ -194,7 +194,6 @@
     }
 </style>
 <script>
-import * as api from '../api'
 import MainLayout from '../components/MainLayout.vue'
 import ReportCategory from '../components/ReportCategory.vue'
 
@@ -202,21 +201,12 @@ export default {
     data() {
       return   {
         AuthData: this.$store.state.authData,
-        IsLoaded: this.$store.state.isLoaded,
         IsShowUpdate: false
       }
     },
     mounted: function () {
     },
     created: function(){
-      if (this.$store.state.accessToken !== '' & this.$store.state.isLoaded === false) {
-          api.getAuth().then((response) => {
-            this.$store.commit('load', response.body)
-          }, (response) => {
-            console.log('failed')
-            console.log(response)
-          })
-        }
       
     },
     components: {

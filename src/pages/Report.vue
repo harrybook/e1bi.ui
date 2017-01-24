@@ -25,9 +25,11 @@ export default {
         }
     },
     created: function(){
-        let urlTemplate = config.get('SSRSServer') + "/Reports/report@@?rs:embed=true"
-        this.url = urlTemplate.replace('@@', this.$store.state.route.query.path)
         document.body.scrollTop = 0
+        if(this.$store.state.accessToken !== ''){
+            let urlTemplate = config.get('SSRSServer') + "/Reports/report@@?rs:embed=true"
+            this.url = urlTemplate.replace('@@', this.$store.state.route.query.path)
+        }
     },
     components:{
         MainLayout

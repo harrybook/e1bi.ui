@@ -19,8 +19,9 @@ export default {
     userMgr.signinRedirectCallback().then(function (user) {
       Vue.http.headers.common["Authorization"] =  'Bearer ' + user.access_token
       _self.$store.commit('login', user)
-      _self.$router.push(localStorage.lastPathUrl)
-      refresh_ssrs(user.id_token)
+      refresh_ssrs(user.id_token, function(){
+          _self.$router.push(localStorage.lastPathUrl)
+      })
     })
   }
 }
