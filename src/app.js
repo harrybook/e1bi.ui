@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import { sync } from 'vuex-router-sync';
@@ -8,6 +9,7 @@ import 'element-ui/lib/theme-default/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
 import config from '../config'
 import App from './App.vue'
+
 
 Vue.use(VueResource)
 Vue.use(ElementUI, { locale })

@@ -2,17 +2,30 @@
   <div>
     <main-layout>
         <div class="reportContainer">
-            <iframe id="report_iframe"  :src="url" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" scrolling="no"  style="width:1200px; height:850px"></iframe>
+            <iframe id="report_iframe"  :src="url" frameborder="0" allowtransparency="true" marginheight="0" marginwidth="0" scrolling="no"></iframe>
         </div>
     </main-layout>
   </div>
 </template>
 <style scoped>
 .reportContainer{
+    position: relative;
     margin-left:auto;
     margin-right:auto;
-    width:1200px
+    min-width: 1024px;
+    min-height:768px;
 }
+
+.reportContainer iframe{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
 </style>
 <script>
 import MainLayout from '../components/MainLayout.vue'
